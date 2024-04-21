@@ -7,19 +7,17 @@ app = Flask(__name__)
 def searchResult(query_result):
     results = tfidf_consumer.search_query(query_result)
 
-    print(results)
-
     data = {}
 
     for index, each in enumerate(results):
-        if each[0] != 0: data[index+1] = each[1]
+        if each[0] != 0: data[index+1] = (each[1], each[0], each[2])
 
-    link_component = ''
+    title_content_component = ''
 
-    for ele in data.values():
-        link_component += f'<div><a href={ele}>{ele.split("/")[-1]}</a></div>'
+    for key, value in data.items():
+        title_content_component += f'<h4>{key}. {value[2]}  : {value[1]}</h4><div><p>{value[0]}</p></div></br></br>'
     
-    return link_component
+    return title_content_component
 
 @app.route('/search', methods=['POST', 'GET'])
 def search():

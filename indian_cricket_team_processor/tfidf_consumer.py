@@ -1,3 +1,4 @@
+from configparser import ConfigParser
 import pandas as pd
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -28,22 +29,27 @@ def search(query, tfidf_vectorizer, tfidf_matrix, cosine_similarities, documents
     results = []
     for idx in most_similar_indices[:top_k]:
         similarity_score = query_cosine_similarities[0][idx]
-        document = documents.iloc[idx]['link'].strip()
-        results.append((similarity_score, document))
+        document = documents.iloc[idx]['content']
+        title = documents.iloc[idx]['title']
+        results.append((similarity_score, document, title))
 
     return results
 
 def search_query(query):
-    tfidf_index_file = 'tfidf_index.pkl'
-    cosine_similarities_file = 'cosine_similarity.pkl'
-    csv_file = 'C:/Users/swast/Desktop/MyProjects/python/Web_Crawler/indian_cricket_team_crawler/webpage_records.csv'
+    config = ConfigParser()
+    config.read("C:/Users/swast/Desktop/MyProjects/python/Web_Crawler/config.ini")
+    tfidf_index_file = config.get("filepaths", "tfidf_index")
+    cosine_similarities_file = config.get("filepaths", "consine_similarity")
+    # csv_file = 'C:/Users/swast/Desktop/MyProjects/python/Web_Crawler/indian_cricket_team_crawler/webpage_records.csv'
+    # csv_file = 'C:/Users/swast/Desktop/MyProjects/python/Web_Crawler/webpage_records.csv'
+    json_file = config.get("filepaths", "json_file")
 
     # Load indexed data
     tfidf_vectorizer, tfidf_matrix, cosine_similarities = load_indexed_data(
         tfidf_index_file, cosine_similarities_file)
 
-    # Load documents from CSV
-    df_documents = pd.read_csv(csv_file)
+    # Load documents from json
+    df_documents = pd.read_json(json_file)
 
     # Example: Perform search
     results = search(query, tfidf_vectorizer, tfidf_matrix, cosine_similarities, df_documents, top_k=5)
