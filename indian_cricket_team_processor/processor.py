@@ -3,6 +3,20 @@ import tfidf_consumer
 
 app = Flask(__name__)
 
+@app.route('/primary_search/<query_result>', methods=['GET'])
+def primarySearchEngine(query_result):
+    results = tfidf_consumer.search_query(query_result)
+
+    data = {}
+
+    for index, each in enumerate(results):
+        if each[1] != 0: data[index+1] = (each[0], each[1], each[2])
+
+    print(data)
+
+    return jsonify(data)
+     
+
 @app.route('/search/<query_result>')
 def searchResult(query_result):
     results = tfidf_consumer.search_query(query_result)
@@ -10,12 +24,12 @@ def searchResult(query_result):
     data = {}
 
     for index, each in enumerate(results):
-        if each[0] != 0: data[index+1] = (each[1], each[0], each[2])
+        if each[1] != 0: data[index+1] = (each[0], each[1], each[2])
 
     title_content_component = ''
 
     for key, value in data.items():
-        title_content_component += f'<h4>{key}. {value[2]}  : {value[1]}</h4><div><p>{value[0]}</p></div></br></br>'
+        title_content_component += f'<h4>{key}. {value[0]}  : {value[1]}</h4><div><p>{value[2]}</p></div></br></br>'
     
     return title_content_component
 

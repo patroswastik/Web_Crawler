@@ -31,7 +31,7 @@ def search(query, tfidf_vectorizer, tfidf_matrix, cosine_similarities, documents
         similarity_score = query_cosine_similarities[0][idx]
         document = documents.iloc[idx]['content']
         title = documents.iloc[idx]['title']
-        results.append((similarity_score, document, title))
+        results.append((title, similarity_score, document))
 
     return results
 
