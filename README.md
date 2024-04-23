@@ -32,7 +32,8 @@ The "Indian Cricket Team Web Crawler" project focuses on extracting title and co
 
 ## Design
 
-Explain the system capabilities, interactions, and integration aspects.
+<!-- Explain the system capabilities, interactions, and integration aspects. -->
+![](Images\Diagram.JPG)
 
 ## Architecture
 
@@ -84,11 +85,9 @@ Follow these steps to set up and run the Indian Cricket Team Information Retriev
    - Once the Flask server is running, use tools like Postman:
      - Access the endpoint `http://127.0.0.1:5000/primary_search/<query_search>` in Postman to retrieve search results for a specific query.
 
-9. **Use Web Interface**
+9. **Use Web Interface (Additional)**
    - Open a web browser and visit `http://127.0.0.1:5000/search`:
      - Enter a query in the input box on the webpage to perform a search and view results.
-
-
 
 
 ## Conclusion
@@ -103,16 +102,29 @@ Here you can find all the Downloaded HTML files related to Indian Cricket Team t
 
 ## Test Cases
 
-Describe the testing framework, test harness, and coverage criteria used to validate the project.
+1. Query -> "virat kohli"
+![](Images\viratkohli.JPG)
+
+1. Query -> "Sachin"
+![](Images\Sachin.JPG)
 
 ## Source Code
 
-Include source code listings, documentation, and dependencies (open-source libraries or frameworks).
+<!-- Include source code listings, documentation, and dependencies (open-source libraries or frameworks). -->
+Attached a `requirements.txt` to directly install the libraries
+
+The following libraries has been used
+1. **Scrapy**: Scrapy is a powerful web crawling and scraping framework used to extract data from websites and APIs efficiently.
+
+1. **Flask**: Flask is a lightweight and flexible web framework for building web applications in Python, providing tools and libraries to create RESTful APIs and web services.
+
+1. **Pandas**: Pandas is a popular library for data manipulation and analysis in Python, offering data structures and tools for reading, writing, and processing structured data.
+
+1. **Scikit-learn**: Scikit-learn is a comprehensive machine learning library in Python, providing simple and efficient tools for data mining and analysis, including various algorithms for classification, regression, clustering, and more.
+
+1. **BeautifulSoup4**: BeautifulSoup4 is a Python library for parsing HTML and XML documents, enabling easy navigation, extraction, and manipulation of data from web pages.
+
 
 ## Bibliography
 
 List reference citations using the Chicago style (AMS/AIP or ACM/IEEE format).
-
----
-
-Feel free to adapt and expand each section based on the specific details and complexity of your project. This structure aims to provide a comprehensive and organized documentation layout covering various aspects of your project development and implementation.
