@@ -1,23 +1,29 @@
+from pathlib import Path
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
 import pickle
 import pandas as pd
 from configparser import ConfigParser
+from html_to_json_generator import JSON_Generator
 
-# df = pd.read_csv("C:/Users/swast/Desktop/MyProjects/python/Web_Crawler/indian_cricket_team_crawler/webpage_records.csv")
-# df = pd.read_csv("C:/Users/swast/Desktop/MyProjects/python/Web_Crawler/webpage_records.csv")
-config = ConfigParser()
-config.read("config.ini")
-df = pd.read_json(config.get("filepaths", "json_file"))
 
-df = df['content'].values
+if __name__ == "__main__":
+    config = ConfigParser()
+    config.read("C:/Users/swast/Desktop/MyProjects/python/Web_Crawler/config.ini")
 
-tfidf_vectorizer = TfidfVectorizer()
-tfidf_matrix = tfidf_vectorizer.fit_transform(df)
-cosine_similarities = cosine_similarity(tfidf_matrix, tfidf_matrix)
+    html_files_loc = config.get("filepaths", "webpages")
+    json = JSON_Generator()
+    for file_path in Path(html_files_loc).iterdir():
+        if file_path.suffix == ".html":
+            with open(file_path, "rb") as f:
+                json.parse_html(f)
+    json.create_json()
 
-with open(config.get("filepaths", "tfidf_index"), 'wb') as f:
-    pickle.dump((tfidf_vectorizer, tfidf_matrix), f)
+    df = pd.read_json(config.get("filepaths", "json_file"))
 
-with open(config.get("filepaths", "consine_similarity"), 'wb') as f:
-    pickle.dump(cosine_similarities, f)
+    df = df['content'].values
+
+    tfidf_vectorizer = TfidfVectorizer()
+    tfidf_matrix = tfidf_vectorizer.fit_transform(df)
+
+    with open(config.get("filepaths", "tfidf_index"), 'wb') as f:
+        pickle.dump((tfidf_vectorizer, tfidf_matrix), f)

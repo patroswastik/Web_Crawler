@@ -39,13 +39,7 @@ class IndianCricketSpider(scrapy.Spider):
         self.page_count += 1
 
         self.log(f"----------------------{response.url}----------------------")
-        # yield {
-        #     # "content": "".join(list(filter(lambda x : x != "\n", details.css("div.mw-content-ltr p::text").getall()))),
-        #     "title": response.css("span.mw-page-title-main::text").get(),
-        #     "content": "".join(details.css("p::text").getall()).replace("\n", ""),
-        #     "link": response.url,
-        #     "filename": filename
-        # }
+
         for link in response.css("div.mw-content-ltr p a::attr(href)").extract()[:10]:
             if link.startswith("/wiki/") and ':' not in link:
                 nextPage = response.urljoin(link)
