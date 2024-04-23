@@ -48,11 +48,11 @@ Follow these steps to set up and run the Indian Cricket Team Information Retriev
 
 1. **Clone the Project**
    - Clone the project repository to your local machine:
-     - Use `git clone <project_repository_url>` to clone the project.
+     - Use `git clone https://github.com/patroswastik/Web_Crawler.git` to clone the project.
      - Navigate into the project directory (`indian_cricket_team_information_retrieval`).
 
 2. **Configure Filepaths**
-   - Locate and open the `config.py` file in the project directory.
+   - Locate and open the `config.ini` file in the project directory.
    - Update the filepaths in the configuration file to specify desired file locations.
 
 3. **Create and Activate Virtual Environment**
