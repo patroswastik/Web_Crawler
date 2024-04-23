@@ -15,8 +15,6 @@ def search(query, tfidf_vectorizer, tfidf_matrix, documents, top_k):
 
     query_cosine_similarities = cosine_similarity(query_vector, tfidf_matrix)
 
-    print("TF-IDF Matrix", tfidf_matrix)
-
     most_similar_indices = query_cosine_similarities.argsort()[0][::-1]
 
     results = []
@@ -24,7 +22,8 @@ def search(query, tfidf_vectorizer, tfidf_matrix, documents, top_k):
         similarity_score = query_cosine_similarities[0][idx]
         document = documents.iloc[idx]['content']
         title = documents.iloc[idx]['title']
-        results.append((title, similarity_score, document))
+        docId = str(idx)
+        results.append((title, similarity_score, document, docId))
 
     return results
 

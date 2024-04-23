@@ -10,7 +10,15 @@ def primarySearchEngine(query_result):
     data = {}
 
     for index, each in enumerate(results):
-        if each[1] != 0: data[index+1] = (each[0], each[1], each[2])
+        if each[1] != 0:
+            temp = {
+                "Title": each[0],
+                "Cosine Similarity Score": each[1],
+                "Document Id": each[3],
+                "content": each[2]
+                }
+            # data[index+1] = (each[0], each[1], each[3], each[2])
+            data[index+1] = temp
 
     print(data)
 
@@ -24,12 +32,12 @@ def searchResult(query_result):
     data = {}
 
     for index, each in enumerate(results):
-        if each[1] != 0: data[index+1] = (each[0], each[1], each[2])
+        if each[1] != 0: data[index+1] = (each[0], each[1], each[3], each[2])
 
     title_content_component = ''
 
     for key, value in data.items():
-        title_content_component += f'<h4>{key}. {value[0]}  : {value[1]}</h4><div><p>{value[2]}</p></div></br></br>'
+        title_content_component += f'<h4>{key}. {value[0]}  : {value[1]} </br> Document Id: {value[2]}</h4><div><p>{value[3]}</p></div></br></br>'
     
     return title_content_component
 
