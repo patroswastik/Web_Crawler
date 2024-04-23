@@ -10,11 +10,25 @@ The project utilizes **Flask** to create a web application where users can input
 
 Next steps involve optimizing the **web crawler's efficiency**, refining the **indexing and querying mechanisms**, and enhancing the **user interface** for a seamless experience.
 
-
-
 ## Overview
+<!-- Describe the solution outline, relevant literature, and the proposed system in detail. -->
 
-Describe the solution outline, relevant literature, and the proposed system in detail.
+The "Indian Cricket Team Web Crawler" project focuses on extracting title and content data from Wikipedia pages related to the Indian Cricket Team using Scrapy, a web crawling and scraping framework. The solution outline is as follows:
+
+1. **Web Scraping and Data Extraction:**
+   - Use Scrapy to crawl Wikipedia pages related to the Indian Cricket Team.
+   - Save HTML files of the crawled pages for further processing.
+
+2. **Indexer (Data Processing and Indexing):**
+   - Extract title and content information from the saved HTML files.
+   - Clean and preprocess the extracted data for storage and indexing.
+   - Generate `webpage_records.json` and create the TF-IDF vectorizer.
+
+3. **Processor (Querying and Presentation):**
+   - Develop a command-line interface (CLI) or Flask-based web application to interact with the indexed data.
+   - Implement commands or routes to query and retrieve relevant information from the stored dataset.
+   - Use cosine similarity to compute relevance scores and present top-k results based on user queries.
+
 
 ## Design
 
@@ -26,7 +40,56 @@ Outline the software components, interfaces, and implementation details of the s
 
 ## Operation
 
-Detail the software commands, inputs required, and installation instructions.
+<!-- Detail the software commands, inputs required, and installation instructions. -->
+
+Follow these steps to set up and run the Indian Cricket Team Information Retrieval System on your local machine:
+
+1. **Clone the Project**
+   - Clone the project repository to your local machine:
+     - Use `git clone <project_repository_url>` to clone the project.
+     - Navigate into the project directory (`indian_cricket_team_information_retrieval`).
+
+2. **Configure Filepaths**
+   - Locate and open the `config.py` file in the project directory.
+   - Update the filepaths in the configuration file to specify desired file locations.
+
+3. **Create and Activate Virtual Environment**
+   - Create a virtual environment for the project:
+     - Run `python -m venv env` to create the virtual environment.
+     - Activate the virtual environment:
+       - On Windows: `.\env\Scripts\activate`
+       - On macOS/Linux: `source env/bin/activate`
+
+4. **Install Requirements**
+   - Install project dependencies using pip:
+     - Execute `pip install -r requirements.txt` to install required packages.
+
+5. **Scrape Data**
+   - Navigate to the `indian_cricket_team_crawler` directory.
+   - Run the Scrapy spider to start scraping data:
+     - Use `scrapy crawl indian_cricket` to initiate the scraping process.
+
+6. **Generate TF-IDF Index**
+   - Go to the `indian_cricket_team_indexer` directory.
+   - Execute `python tfidf_generator.py` to generate the TF-IDF index.
+   - After execution, `tfidf_index.pkl` will be generated containing the TF-IDF matrix and vectorizer.
+
+7. **Run Flask Server**
+   - Move to the `indian_cricket_team_processor` directory.
+   - Here the `tfidf_index.pkl` file will be loaded, which will return TF-IDF matrix and vectorizer, and will be further used in cosine similarity.
+   - Start the Flask server to run the information retrieval system:
+     - Run `python processor.py` to start the server.
+
+8. **Access the API**
+   - Once the Flask server is running, use tools like Postman:
+     - Access the endpoint `http://127.0.0.1:5000/primary_search/<query_search>` in Postman to retrieve search results for a specific query.
+
+9. **Use Web Interface**
+   - Open a web browser and visit `http://127.0.0.1:5000/search`:
+     - Enter a query in the input box on the webpage to perform a search and view results.
+
+
+
 
 ## Conclusion
 
@@ -34,7 +97,9 @@ Summarize the results of the project, including successes, failures, outputs, an
 
 ## Data Sources
 
-Provide links, downloads, or access information for any data sources used in the project.
+Here you can find all the Downloaded HTML files related to Indian Cricket Team that were download from Scrapy -> [Webpages](generated_files/webpages)
+
+<!-- Provide links, downloads, or access information for any data sources used in the project. -->
 
 ## Test Cases
 

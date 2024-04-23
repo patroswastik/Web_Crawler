@@ -27,7 +27,7 @@ def search(query, tfidf_vectorizer, tfidf_matrix, documents, top_k):
 
     return results
 
-def search_query(query, top_k=5):
+def search_query(query):
     config = ConfigParser()
     config.read("C:/Users/swast/Desktop/MyProjects/python/Web_Crawler/config.ini")
     tfidf_index_file = config.get("filepaths", "tfidf_index")
@@ -38,6 +38,6 @@ def search_query(query, top_k=5):
 
     df_documents = pd.read_json(json_file)
 
-    results = search(query, tfidf_vectorizer, tfidf_matrix, df_documents, top_k=top_k)
+    results = search(query, tfidf_vectorizer, tfidf_matrix, df_documents, top_k=int(config.get('parameters', 'top_k')))
 
     return results
