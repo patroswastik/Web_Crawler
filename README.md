@@ -103,10 +103,10 @@ Here you can find all the Downloaded HTML files related to Indian Cricket Team t
 ## Test Cases
 
 1. Query -> "virat kohli"
-![](Images\viratkohli.JPG)
+![](https://github.com/patroswastik/Web_Crawler/blob/main/Images/viratkohli.JPG)
 
 1. Query -> "Sachin"
-![](Images\Sachin.JPG)
+![](https://github.com/patroswastik/Web_Crawler/blob/main/Images/Sachin.JPG)
 
 ## Source Code
 
@@ -127,4 +127,16 @@ The following libraries has been used
 
 ## Bibliography
 
-List reference citations using the Chicago style (AMS/AIP or ACM/IEEE format).
+- **Scrapy**: 
+  - Website: [Scrapy - A Fast and Powerful Scraping and Web Crawling Framework](https://scrapy.org/)
+
+- **Flask**: 
+  - Website: [Flask - A Lightweight WSGI Web Application Framework](https://flask.palletsprojects.com/)
+
+- **Pandas**: 
+  - Book: "Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython" by Wes McKinney
+
+- **TF-IDF Vectorizer with Scikit-learn**: 
+  - Journal Article: "Scikit-learn: Machine Learning in Python" by Pedregosa et al. (2011)
+    - [DOI: 10.5555/1953048.2078195](https://doi.org/10.5555/1953048.2078195)
+
