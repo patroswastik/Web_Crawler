@@ -30,14 +30,15 @@ The "Indian Cricket Team Web Crawler" project focuses on extracting title and co
    - Use cosine similarity to compute relevance scores and present top-k results based on user queries.
 
 
-## Design
+<!-- ## Design -->
 
 <!-- Explain the system capabilities, interactions, and integration aspects. -->
-![](Images\Diagram.JPG)
 
 ## Architecture
 
-Outline the software components, interfaces, and implementation details of the system architecture.
+<!-- Outline the software components, interfaces, and implementation details of the system architecture. -->
+![](https://github.com/patroswastik/Web_Crawler/blob/main/Images/Diagram.JPG)
+
 
 ## Operation
 
